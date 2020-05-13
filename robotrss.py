@@ -203,11 +203,11 @@ class RobotRss(object):
         Send a message when the command /help is issued.
         """
 
-        message = "<p><strong>RSS Management</strong><br> <code>/add &lt;url&gt; &lt;entryname&gt;</code>" \
-                  " - Adds a new subscription to your list.<br> <code>/remove &lt;entryname&gt;</code> - Removes" \
-                  " an exisiting subscription from your list.<br> <code>/get &lt;entryname&gt;" \
+        message = "<code>/add &lt;url&gt; &lt;entryname&gt;</code>" \
+                  " - Adds a new subscription to your list.\n<code>/remove &lt;entryname&gt;</code> - Removes" \
+                  " an exisiting subscription from your list.\n<code>/get &lt;entryname&gt;" \
                   " [optional: &lt;count 1-10&gt;]</code> - Manually parses your subscription," \
-                  " sending you the last  elements.<br> <code>/list</code> - Shows all your subscriptions as a list.</p>"
+                  " sending you the last  elements.\n<code>/list</code> - Shows all your subscriptions as a list.\n<code>/help</code> - Shows the help"
         update.message.reply_text(message, parse_mode=ParseMode.HTML)
 
     def stop(self, bot, update):

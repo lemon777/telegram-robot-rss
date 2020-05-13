@@ -15,7 +15,7 @@ class FeedHandler(object):
             return feed.entries[:entries]
         else:
             feed = feedparser.parse(url)
-            return feed.entries[:4]
+            return feed.entries[:10]
 
     @staticmethod
     def is_parsable(url):
@@ -45,7 +45,7 @@ class FeedHandler(object):
         This should be called before parsing the url, to make sure it is parsable
         """
 
-        string = string.lower()
+        # string = string.lower()
 
         url_pattern = re.compile("((http(s?))):\/\/.*")
         if not url_pattern.match(string):

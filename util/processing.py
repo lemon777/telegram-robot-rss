@@ -54,7 +54,8 @@ class BatchProcess(threading.Thread):
         for user in telegram_users:
             if user[6]:  # is_active
                 try:
-                    for post in FeedHandler.parse_feed(url[0]):
+                    posts = FeedHandler.parse_feed(url[0])
+                    for post in posts:
                         self.send_newest_messages(
                             url=url, post=post, user=user)
                 except:
@@ -64,8 +65,9 @@ class BatchProcess(threading.Thread):
                     self.bot.send_message(
                         chat_id=user[0], text=message, parse_mode=ParseMode.HTML)
 
-        self.db.update_url(url=url[0], last_updated=str(
-            DateHandler.get_datetime_now()))
+        if len(posts) > 0:
+            last = str(DateHandler.parse_datetime(posts[0]['published']))
+            self.db.update_url(url=url[0], last_updated=last)
 
     def send_newest_messages(self, url, post, user):
         post_update_date = DateHandler.parse_datetime(datetime=post.updated)
